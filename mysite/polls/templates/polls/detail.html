@@ -5,17 +5,17 @@
 {% endblock %}
 
 {%block content%} 
-    <div class='container'>
-    <h1>{{ question.question_text }}</h1>
+<div class='container'>
+<h1 class="mt-4">{{ question.question_text }}</h1>
 
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-        <form action="{% url 'polls:vote' question.id %}" method="post">
-        {% csrf_token %}
-        {% for choice in question.choice_set.all %}
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
-        {% endfor %}
-        <input class="btn btn-outline-info mb-4" type="submit" value="Vote" />
-        </form>
-    </div>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    {% for choice in question.choice_set.all %}
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+    {% endfor %}
+    <input class="btn btn-outline-info mb-4" type="submit" value="Vote" />
+    </form>
+</div>
 {%endblock content%}
